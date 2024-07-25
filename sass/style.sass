@@ -1,0 +1,463 @@
+@import variables
+@import mixins
+
+*
+    margin: 0
+    padding: 0
+
+%circle-container-base
+    width: 400px
+    height: 400px
+    box-sizing: border-box
+    border-radius: 50%
+    margin: 0 auto
+
+%image-box-absolute
+    position: absolute
+    content: ""
+    background-repeat: no-repeat
+    background-position: center
+    background-size: contain
+
+.bud-shadow
+    background-color: $shadow-color
+    border-radius: 50%
+    position: absolute
+    z-index: 8
+    opacity: .6
+
+.bud
+    +flex-absolute
+    z-index: 9
+
+.petal
+    background-color: $petal-color
+
+.coner-top-left
+    border-top-left-radius: 90%
+
+.coner-top-right
+    border-top-right-radius: 90%
+
+.coner-bottom-right
+    border-bottom-left-radius: 90%
+
+.coner-bottom-left
+    border-bottom-right-radius: 90%
+
+.bud-middle-center
+    position: absolute
+    z-index: 10
+    border-radius: 50%
+    opacity: 0
+    background-color: $sun-light-color
+
+%butterfly-front
+    width: 78px
+    height: 73px
+
+%butterfly-front, %butterfly-middleground, %butterfly-back, %butterfly-far-back
+    @extend %image-box-absolute
+    z-index: 11
+    opacity: 1
+    transform: scale(0)
+    transition: 0s, opacity 0.3s cubic-bezier(.98,0,0,.99)
+
+%butterfly-middleground
+    width: 70px
+    height: 66px
+
+%butterfly-back
+    width: 63px
+    height: 60px
+
+%butterfly-far-back
+    width: 56px
+    height: 53px
+
+%opened
+    background-image: url(../img/butterfly-opened.svg)
+
+%up
+    background-image: url(../img/butterfly-up.svg)
+
+%down
+    background-image: url(../img/butterfly-down.svg)
+
+.container
+    background-color: rgb(45, 45, 45)
+    padding: 10rem 0
+    min-height: 100vh
+    .circle-inner-container
+        @extend %circle-container-base
+        position: relative
+        overflow: hidden
+        box-shadow: 0 0 5rem 0 rgba(white, 0.3)
+        background: linear-gradient(0, $sun-light-color 27%, white 48%, $sky-light-color 86%)
+        .day-background
+            @extend %circle-container-base
+            background: linear-gradient(0, $sun-light-color 27%, white 48%, $sky-color 95%)
+            opacity: 0
+            +main-time-transition
+            z-index: 1
+        .sun
+            position: absolute
+            z-index: 2
+            top: -3rem
+            left: 1.7rem
+            width: 145px
+            height: 145px
+            background-color: $sun-color
+            filter: blur(0.9rem)
+            border-radius: 50%
+            +main-time-transition
+        .cloud-back
+            @extend %image-box-absolute
+            top: 3.2rem
+            left: 19rem
+            z-index: 3
+            width: 356px
+            height: 58px
+            background-image: url(../img/cloud-back.svg)
+            opacity: 0.9
+            transition: 3.9s
+        .cloud-front
+            @extend %image-box-absolute
+            top: 5.2rem
+            left: 17rem
+            z-index: 4
+            opacity: 0.9
+            width: 245px
+            height: 31px
+            background-image: url(../img/cloud-front.svg)
+            transition: 3s
+        .bush-light-back
+            @extend %image-box-absolute
+            top: 8.2rem
+            left: 0
+            z-index: 5
+            width: 390px
+            height: 210px
+            background-image: url(../img/bush-light-back.svg)
+            opacity: 0.8
+            +main-time-transition
+        .bush-drop-shadow
+            @extend %image-box-absolute
+            top: 17.8rem
+            left: 1.6rem
+            z-index: 6
+            width: 390px
+            height: 94px
+            background-image: url(../img/bush-drop-shadow.svg)
+            opacity: .6
+            transform: scaleY(-1) skewX(-45deg)
+            +main-time-transition
+        .bush-front
+            @extend %image-box-absolute
+            top: 9.5rem
+            left: 0.5rem
+            z-index: 7
+            width: 376px
+            height: 180px
+            background-image: url(../img/bush-main-front.svg)
+        .flower-one
+            .bud-shadow
+                width: 10px
+                height: 10px
+                top: 17.2rem
+                left: 5.56rem
+                transition: 3.8s ease-in-out
+                transition-delay: 0.2s
+            .bud
+                width: 10px
+                height: 10px
+                top: 17rem
+                left: 5.5rem
+                transition: 3.4s ease-in-out
+                transition-delay: 0.2s
+                .petal
+                    width: 5px
+                    height: 5px
+                    transition: 3.4s ease-in-out, border-radius 3.8s
+                    transition-delay: 0.2s
+            .bud-middle-center
+                width: 5px
+                height: 5px
+                top: 17rem
+                left: 5.55rem
+                transition: 3.4s ease-in-out
+                transition-delay: 0.2s
+        .flower-two
+            .bud-shadow
+                width: 17px
+                height: 17px
+                top: 13.2rem
+                left: 6.2rem
+                transition: 3.7s ease-in-out
+            .bud
+                width: 17px
+                height: 17px
+                top: 13rem
+                left: 6.2rem
+                transition: 3.2s ease-in-out
+                .petal
+                    width: 8.5px
+                    height: 8.5px
+                    transition: 3.2s ease-in-out, border-radius 3.7s
+            .bud-middle-center
+                width: 8px
+                height: 8px
+                top: 13rem
+                left: 6.4rem
+                transition: 3.2s ease-in-out
+        .flower-three
+            .bud-shadow
+                width: 15px
+                height: 15px
+                top: 16.2rem
+                left: 11.1rem
+                transition: 3s ease-in-out
+                transition-delay: 0.8s
+            .bud
+                width: 15px
+                height: 15px
+                top: 16rem
+                left: 11rem
+                transition: 2.7s ease-in-out
+                transition-delay: 0.8s
+                .petal
+                    width: 7.5px
+                    height: 7.5px
+                    transition: 2.7s ease-in-out, border-radius 3s
+                    transition-delay: 0.8s
+            .bud-middle-center
+                width: 6px
+                height: 6px
+                top: 16.1rem
+                left: 11.2rem
+                transition: 2.7s ease-in-out
+                transition-delay: 0.8s
+        .flower-four
+            .bud-shadow
+                width: 10px
+                height: 10px
+                top: 14.7rem
+                left: 15.56rem
+                transition: 3.9s ease-in-out
+            .bud
+                width: 10px
+                height: 10px
+                top: 14.5rem
+                left: 15.5rem
+                transition: 3.7s ease-in-out
+                .petal
+                    width: 5px
+                    height: 5px
+                    transition: 3.7s ease-in-out, border-radius 3.9s
+            .bud-middle-center
+                width: 5px
+                height: 5px
+                top: 14.45rem
+                left: 15.75rem
+                transition: 3.7s ease-in-out
+        .flower-five
+            .bud-shadow
+                width: 15px
+                height: 15px
+                top: 15.7rem
+                left: 19.2rem
+                transition: 2.8s ease-in-out
+                transition-delay: 1s
+            .bud
+                +flex-absolute
+                width: 15px
+                height: 15px
+                top: 15.5rem
+                left: 19.1rem
+                transition: 2.5s ease-in-out
+                transition-delay: 1s
+                .petal
+                    width: 7.5px
+                    height: 7.5px
+                    transition: 2.5s ease-in-out, border-radius 2.8s
+                    transition-delay: 1s
+            .bud-middle-center
+                width: 7px
+                height: 7px
+                top: 15.6rem
+                left: 19.34rem
+                transition: 2.5s ease-in-out
+                transition-delay: 1s
+        .butterfly-first-front-down
+            @extend %butterfly-front
+            @extend %down
+            top: 16rem
+            left: 19rem
+        .butterfly-front-opened
+            @extend %butterfly-front
+            @extend %opened
+            top: 17.5rem
+            left: 16rem
+            transition-delay: 0.3s
+        .butterfly-front-up
+            @extend %butterfly-front
+            @extend %up
+            top: 18.5rem
+            left: 14rem
+            transition-delay: 0.6s
+        .butterfly-front-down
+            @extend %butterfly-front
+            @extend %down
+            top: 13.7rem
+            left: 13.5rem
+            transition-delay: 0.9s
+        .butterfly-middleground-opened
+            @extend %butterfly-middleground
+            @extend %opened
+            top: 14.5rem
+            left: 11.5rem
+            transition-delay: 1.2s
+        .butterfly-middleground-up
+            @extend %butterfly-middleground
+            @extend %up
+            top: 15.5rem
+            left: 10rem
+            transition-delay: 1.5s
+        .butterfly-middleground-down
+            @extend %butterfly-middleground
+            @extend %down
+            top: 11.8rem
+            left: 9rem
+            transition-delay: 1.8s
+        .butterfly-back-opened
+            @extend %butterfly-back
+            @extend %opened
+            top: 12.6rem
+            left: 6.5rem
+            transition-delay: 2.1s
+        .butterfly-back-up
+            @extend %butterfly-back
+            @extend %up
+            top: 11.8rem
+            left: 5.5rem
+            transition-delay: 2.4s
+        .butterfly-back-down
+            @extend %butterfly-back
+            @extend %down
+            top: 8.8rem
+            left: 3rem
+            transition-delay: 2.7s
+        .butterfly-far-back-opened
+            @extend %butterfly-far-back
+            @extend %opened
+            top: 9.2rem
+            left: 0.7rem
+            transition-delay: 3s
+        .butterfly-far-back-up
+            @extend %butterfly-far-back
+            @extend %up
+            top: 8.8rem
+            left: -0.5rem
+            transition-delay: 3.3s
+        .butterfly-far-back-down
+            @extend %butterfly-far-back
+            @extend %down
+            top: 7.8rem
+            left: -1.5rem
+            transition-delay: 3.6s
+
+.circle-inner-container:hover > .day-background
+    opacity: 1
+
+.circle-inner-container:hover > .sun
+    transform: translate(180%, 58%) rotate(0)
+    filter: blur(1.5rem)
+
+.circle-inner-container:hover > .cloud-back
+    left: -15rem
+    filter: brightness(0.5) sepia(0.8) hue-rotate(180deg) saturate(3)
+    opacity: 1
+
+.circle-inner-container:hover > .cloud-front
+    left: -14rem
+    opacity: .5
+
+.circle-inner-container:hover > .bush-drop-shadow
+    transform: scaleY(-1) skewX(1deg)
+    opacity: .42
+    left: -2rem
+
+.circle-inner-container:hover > .bush-light-back
+    opacity: .6
+
+.circle-inner-container:hover > .flower-one > .bud
+    transform: scale(2) rotate(25deg)
+
+.circle-inner-container:hover > .flower-two > .bud
+    transform: scale(1.7) rotate(45deg)
+
+.circle-inner-container:hover > .flower-three > .bud
+    transform: scale(1.8) rotate(15deg)
+
+.circle-inner-container:hover > .flower-four > .bud
+    transform: scale(2.1) rotate(78deg)
+
+.circle-inner-container:hover > .flower-five > .bud
+    transform: scale(1.5) rotate(35deg)
+
+.circle-inner-container:hover > * > .bud-middle-center
+    opacity: 1
+
+.circle-inner-container:hover > * > .bud-shadow
+    transform: scale(2.2)
+    opacity: .42
+
+.circle-inner-container:hover > .flower-three > .bud-shadow
+    transform: scale(2.5)
+
+.circle-inner-container:hover > .flower-one > .bud-shadow,
+.circle-inner-container:hover > .flower-four > .bud-shadow
+    transform: scale(3)
+
+.circle-inner-container:hover > * > * > .petal
+    background: linear-gradient(120deg, orange 30%, $sun-light-color 70%)
+
+.circle-inner-container:hover > * > * > .petal:nth-child(1)
+    transform: scale(1.5)
+    border-top-left-radius: 0
+    border-top-right-radius: 70%
+    border-bottom-left-radius: 70%
+
+.circle-inner-container:hover > * > * > .petal:nth-child(2)
+    transform: scale(1.5)
+    border-top-left-radius: 70%
+    border-top-right-radius: 0
+    border-bottom-right-radius: 70%
+
+.circle-inner-container:hover > * > * > .petal:nth-child(3)
+    transform: scale(1.5)
+    border-bottom-right-radius: 70%
+    border-bottom-left-radius: 0
+    border-top-left-radius: 70%
+
+.circle-inner-container:hover > * > * > .petal:nth-child(4)
+    transform: scale(1.5)
+    border-top-right-radius: 70%
+    border-bottom-right-radius: 0
+    border-bottom-left-radius: 70%
+
+.circle-inner-container:hover > .butterfly-first-front-down,
+.circle-inner-container:hover > .butterfly-front-opened,
+.circle-inner-container:hover > .butterfly-front-up,
+.circle-inner-container:hover > .butterfly-front-down,
+.circle-inner-container:hover > .butterfly-middleground-opened,
+.circle-inner-container:hover > .butterfly-middleground-up,
+.circle-inner-container:hover > .butterfly-middleground-down,
+.circle-inner-container:hover > .butterfly-back-opened,
+.circle-inner-container:hover > .butterfly-back-up,
+.circle-inner-container:hover > .butterfly-back-down,
+.circle-inner-container:hover > .butterfly-far-back-opened,
+.circle-inner-container:hover > .butterfly-far-back-up,
+.circle-inner-container:hover > .butterfly-far-back-down
+    transform: scale(1)
+    opacity: 0
